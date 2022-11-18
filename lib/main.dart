@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:myapp/bottonNavigationbar.dart';
 import 'package:myapp/pages/generalinstructions/navalpassport/view.dart';
-import 'package:myapp/pages/home/view.dart';
-import 'package:myapp/pages/home_page.dart';
 import 'package:myapp/pages/registrationDone/view.dart';
-import 'package:myapp/pages/servicesDetails/view.dart';
 import 'package:myapp/pages/signin/view.dart';
 
 import 'classes/language_constants.dart';
@@ -52,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: _locale,
-      home: MainNav(),
+      home: Signin(),
     );
   }
 }

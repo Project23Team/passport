@@ -81,7 +81,7 @@ class _SigninState extends State<Signin> {
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height,
+                          height:650,// MediaQuery.of(context).size.height,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
