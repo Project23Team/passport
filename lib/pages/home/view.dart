@@ -3,6 +3,7 @@ import 'package:myapp/pages/home/carousel.dart';
 import 'package:myapp/pages/registrationDone/view.dart';
 import 'package:myapp/pages/servicesDetails/view.dart';
 import 'package:myapp/pages/signin/view.dart';
+import 'package:myapp/pages/type_passport/newpassport/view.dart';
 
 import '../../classes/language.dart';
 import '../../classes/language_constants.dart';
@@ -373,8 +374,7 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              sign(translation(context).newPassport, translation(
-                                  context).desAdd),
+                              sign(translation(context).newPassport, translation(context).desAdd),
                               SizedBox(width: 10,),
                               sign(translation(context).renewal, translation(
                                   context).desAdd)
@@ -787,7 +787,7 @@ class _HomeState extends State<Home> {
                 child: ElevatedButton(
                   onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Signin()));
+                        builder: (context) => Newpassport()));
                   },
                   child: Text(translation(context).checkIn,style: TextStyle(fontSize: 20,color: Colors.white),),
                   style: ElevatedButton.styleFrom(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/home/view.dart';
 
 import '../../classes/language.dart';
 import '../../classes/language_constants.dart';
@@ -16,7 +17,10 @@ class _RegistrationDoneState extends State<RegistrationDone> {
     return Scaffold(
       appBar: AppBar(elevation: 0,
         backgroundColor: Color(0xff003b57),
-        title: Text(translation(context).homePage),
+        title: GestureDetector(
+            child: Text(translation(context).homePage),
+        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+        },),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),

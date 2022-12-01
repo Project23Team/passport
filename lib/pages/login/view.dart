@@ -1,9 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:myapp/classes/language.dart';
 import 'package:myapp/classes/language_constants.dart';
 import 'package:myapp/main.dart';
 import 'package:myapp/pages/home/view.dart';
+import 'package:myapp/pages/managerr/view.dart';
+import 'package:myapp/pages/registrationDone/view.dart';
+import 'package:myapp/pages/signin/view.dart';
 import 'package:myapp/pages/signup/view.dart';
+import 'package:http/http.dart';
+import 'package:myapp/pages/splash/view.dart';
+
+import '../../dataa.dart';
+
+var nameController=TextEditingController();
+var phoneController=TextEditingController();
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -12,8 +24,102 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  var litems = [];
+  var x = "test";
+  var y = "11";
   bool chick = false;
+  Future getData() async{
+    var url=Uri.parse("http://localhost:4000/log");
+    Response response= await get(url);
+    String body =response.body;
+//convert
+    List<dynamic> list1=json.decode(body);
+    print(list1);
+    //litems.clear();  //to not print the items in litems just print value in mySql colum(name ,phone,..)
+    for (int i=0; i<list1.length; i++){
+      litems.add(list1[i]["name"]);
+      litems.add(list1[i]["phone"]);
+      setState(() {
+        // if the name in mySql == name you inter
+        if((list1[i]["u_name"])==name&&list1[i]["u_phone"]==phone){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => Home()));
+        }
 
+       else if((list1[i]["u_name"])!=name&&list1[i]["u_phone"]!=phone){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => signup()));
+        }
+       else getmanagerr();
+      });
+
+    }
+    print(litems);
+
+
+  }
+  /*
+  Future getDatar() async{
+    var url=Uri.parse("http://localhost:4000/loga");
+    Response response= await get(url);
+    String body =response.body;
+//convert
+    List<dynamic> list1=json.decode(body);
+    print(list1);
+    //litems.clear();  //to not print the items in litems just print value in mySql colum(name ,phone,..)
+    for (int i=0; i<list1.length; i++){
+      litems.add(list1[i]["name"]);
+      litems.add(list1[i]["phone"]);
+      setState(() {
+        // if the name in mySql == name you inter
+
+         if((list1[i]["u_name"])==name&&list1[i]["u_phone"]==phone){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => RegistrationDone()));
+        }
+         else getData();
+         /*
+        else
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => signup()));
+
+          */
+      });
+
+    }
+    print(litems);
+
+
+  }
+
+   */
+  Future getmanagerr() async{
+    var url=Uri.parse("http://localhost:4000/logmanagerr");
+    Response response= await get(url);
+    String body =response.body;
+//convert
+    List<dynamic> list1=json.decode(body);
+    print(list1);
+    //litems.clear();  //to not print the items in litems just print value in mySql colum(name ,phone,..)
+    for (int i=0; i<list1.length; i++){
+      litems.add(list1[i]["name"]);
+      litems.add(list1[i]["phone"]);
+      setState(() {
+        // if the name in mySql == name you inter
+        if((list1[i]["name"])==name&&list1[i]["phone"]==phone){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => Managerr()));
+        }
+
+        //else
+         //getData();
+      });
+
+    }
+    print(litems);
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -127,6 +233,7 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: 20,),
                       TextField(
+                        controller: nameController,
                         maxLength: 15,
                        // textAlign: TextAlign.right,
                         cursorColor: Color(0xffffffff),
@@ -147,6 +254,7 @@ class _LoginState extends State<Login> {
 
                     SizedBox(height: 20,),
                     TextField(
+                      controller: phoneController,
                         maxLength: 11,
                         //textAlign: TextAlign.right,
                         cursorColor: Color(0xffffffff),
@@ -215,12 +323,14 @@ class _LoginState extends State<Login> {
                       height: 50 ,// <-- match-parent
                       child: ElevatedButton(
                         onPressed: (){
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Home()));
+                         // Navigator.of(context).push(MaterialPageRoute(
+                             // builder: (context) => Home()));
                           setState(() {
-
+                            name=nameController.text;
+                            phone=phoneController.text;
                           });
-
+                          //getmanagerr();
+                          getData();
                         },
                         child: Text(translation(context).next,style: TextStyle(fontSize: 20,color: Color(0xff04a794)),),
                         style: ElevatedButton.styleFrom(

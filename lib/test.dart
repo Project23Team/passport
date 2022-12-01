@@ -1,31 +1,82 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart';
+import 'dart:io' as io;
+
 import 'package:flutter/material.dart';
-import 'package:myapp/classes/language.dart';
-import 'package:myapp/classes/language_constants.dart';
-import 'package:myapp/main.dart';
 import 'package:myapp/pages/home/view.dart';
+import 'package:myapp/pages/login/view.dart';
+import 'package:myapp/pages/registrationDone/view.dart';
 
+import '../../classes/language.dart';
+import '../../classes/language_constants.dart';
 import '../../dataa.dart';
-var c_nameController=TextEditingController();
-var c_phoneController=TextEditingController();
-var c_passwordController=TextEditingController();
+import '../../main.dart';
+import 'package:image_picker/image_picker.dart';
 
-class signup extends StatefulWidget {
-  const signup({Key? key}) : super(key: key);
+var c_emailController=TextEditingController();
+//var c_placeOforderController=TextEditingController();
+//var c_typeOfmarrigeController=TextEditingController();
+
+//var c_sexController=TextEditingController();
+//var c_placeOfbirthController=TextEditingController();
+var c_firstnameController=TextEditingController();
+
+
+//
+//
+//var c_fathersNameController=TextEditingController();
+//var c_grandfatherNameController=TextEditingController();
+//var c_surnameController=TextEditingController();
+
+
+//var c_motherNameController=TextEditingController();
+//var c_motherFatherController=TextEditingController();
+//var c_provinceCountryController=TextEditingController();
+
+
+//var c_maritalStatusController=TextEditingController();
+//var c_professionController=TextEditingController();
+//var c_dateOfbirthController=TextEditingController();
+
+//var c_nationaliIDNumberController=TextEditingController();
+var c_addressController=TextEditingController();
+//var c_imageController=TextEditingController();
+//var c_image2Controller=TextEditingController();
+
+
+class Ss extends StatefulWidget {
+  const Ss({Key? key}) : super(key: key);
 
   @override
-  State<signup> createState() => _signupState();
+  State<Ss> createState() => _SsState();
 }
 
-class _signupState extends State<signup> {
+class _SsState extends State<Ss> {
+
   Future Add_data() async {
-    var url = Uri.parse("http://localhost:4000/add");
+    var url = Uri.parse("http://localhost:4000/ss");
     Map<String, String> headers = {"Content-type": "application/json"};
 
-    String json = '{"u_name": "$nameup",'
-        ' "u_phone": "$phoneup",'
-        ' "u_password": "$passwordup"}';
+    String json = '{"n_email": "$email",'
+        ' "n_placeOforder": "$placeOforder",'
+        ' "n_typeOfmarrige": "$typeOfmarrige",'
+        ' "n_sex": "$sex",'
+        ' "n_placeOfbirth": "$placeOfbirth",'
+        ' "n_firstname": "$firstname",'
+        ' "n_fathersName": "$fathersName",'
+        ' "n_grandfatherName": "$grandfatherName",'
+        ' "n_surname": "$surname",'
+        ' "n_motherName": "$motherName",'
+        ' "n_motherFather": "$motherFather",'
+        ' "n_provinceCountry": "$provinceCountry",'
+        ' "n_maritalStatus": "$maritalStatus",'
+        ' "n_profession": "$profession",'
+        ' "n_dateOfbirth": "$dateOfbirth",'
+        ' "n_nationaliIDNumber": "$nationaliIDNumber",'
+        ' "n_address": "$address",'
+        ' "n_image": "$image",'
+        ' "n_image2": "$image2"}';
     // make POST request
     Response response = await post(url, headers: headers, body: json);
     // check the status code for the result
@@ -38,6 +89,7 @@ class _signupState extends State<signup> {
 
     if (res == null) {}
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,35 +183,11 @@ class _signupState extends State<signup> {
                     Padding(
                       padding: const EdgeInsets.only(top: 30),
                       child:
-                        TextField(
-                          controller: c_nameController,
-                          maxLength: 50,
-                          //textAlign: TextAlign.right,
-                          cursorColor:Color(0xffffffff),
-                          style: const TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            counterStyle: TextStyle(color: Color(0xffffffff),fontSize: 12,),
-                            fillColor: Colors.grey.withOpacity(0.3), filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20)
-                            ),
-
-                            hintText: translation(context).name,
-
-
-                          ),
-                        ),
-                    ),
-
-                    SizedBox(height: 20,),
-                   // Directionality(
-                      //textDirection: TextDirection.rtl,
-                      //child:
                       TextField(
-                        controller: c_phoneController,
-                        maxLength: 16,
-                       // textAlign: TextAlign.right,
-                        cursorColor: Color(0xffffffff),
+                        controller: c_emailController,
+                        maxLength: 50,
+                        //textAlign: TextAlign.right,
+                        cursorColor:Color(0xffffffff),
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           counterStyle: TextStyle(color: Color(0xffffffff),fontSize: 12,),
@@ -168,32 +196,56 @@ class _signupState extends State<signup> {
                               borderRadius: BorderRadius.circular(20)
                           ),
 
-                          hintText: translation(context).phoneNumber,
+                          hintText: translation(context).name,
 
 
                         ),
                       ),
+                    ),
+
+                    SizedBox(height: 20,),
+                    // Directionality(
+                    //textDirection: TextDirection.rtl,
+                    //child:
+                    TextField(
+                      controller: c_addressController,
+                      maxLength: 16,
+                      // textAlign: TextAlign.right,
+                      cursorColor: Color(0xffffffff),
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        counterStyle: TextStyle(color: Color(0xffffffff),fontSize: 12,),
+                        fillColor: Colors.grey.withOpacity(0.3), filled: true,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)
+                        ),
+
+                        hintText: translation(context).phoneNumber,
+
+
+                      ),
+                    ),
                     //),
 
                     SizedBox(height: 20,),
-                        TextField(
-                          controller: c_passwordController,
-                          maxLength: 11,
-                          //textAlign: TextAlign.right,
-                          cursorColor: Color(0xffffffff),
-                          style: const TextStyle(color: Color(0xffffffff)),
-                          decoration: InputDecoration(
-                            counterStyle: TextStyle(color: Color(0xffffffff),fontSize: 12,),
-                            fillColor: Colors.grey.withOpacity(0.3), filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20)
-                            ),
-
-                            hintText: translation(context).password,
-
-
-                          ),
+                    TextField(
+                      controller: c_firstnameController,
+                      maxLength: 11,
+                      //textAlign: TextAlign.right,
+                      cursorColor: Color(0xffffffff),
+                      style: const TextStyle(color: Color(0xffffffff)),
+                      decoration: InputDecoration(
+                        counterStyle: TextStyle(color: Color(0xffffffff),fontSize: 12,),
+                        fillColor: Colors.grey.withOpacity(0.3), filled: true,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)
                         ),
+
+                        hintText: translation(context).password,
+
+
+                      ),
+                    ),
 
 
 
@@ -207,9 +259,9 @@ class _signupState extends State<signup> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Home()));
                           setState(() {
-                            nameup=c_nameController.text;
-                            phoneup=c_phoneController.text;
-                            passwordup=c_passwordController.text;
+                            email=c_emailController.text;
+                            address=c_addressController.text;
+                            fathersName=c_firstnameController.text;
                             Add_data();
                           });
                         },
@@ -244,3 +296,27 @@ class _signupState extends State<signup> {
     );
   }
 }
+
+
+/*
+
+String json = '{"n_email": "$email",'
+        ' "n_placeOforder": "$placeOforder",'
+        ' "n_typeOfmarrige": "$typeOfmarrige",'
+        ' "n_sex": "$sex",'
+        ' "n_placeOfbirth": "$placeOfbirth",'
+        ' "n_firstname": "$firstname",'
+        ' "n_fathersName": "$fathersName",'
+        ' "n_grandfatherName": "$grandfatherName",'
+        ' "n_surname": "$surname",'
+        ' "n_motherName": "$motherName",'
+        ' "	n_motherFather": "$motherFather",'
+        ' "n_provinceCountry": "$provinceCountry",'
+        ' "n_maritalStatus": "$maritalStatus",'
+        ' "n_profession": "$profession",'
+        ' "	n_dateOfbirth": "$dateOfbirth",'
+        ' "n_nationaliIDNumber": "$nationaliIDNumber",'
+        ' "n_address": "$address",'
+        ' "n_image": "$image",'
+        ' "n_image2": "$image2"}';
+ */
