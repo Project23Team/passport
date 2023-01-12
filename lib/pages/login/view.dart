@@ -58,41 +58,7 @@ class _LoginState extends State<Login> {
 
 
   }
-  /*
-  Future getDatar() async{
-    var url=Uri.parse("http://localhost:4000/loga");
-    Response response= await get(url);
-    String body =response.body;
-//convert
-    List<dynamic> list1=json.decode(body);
-    print(list1);
-    //litems.clear();  //to not print the items in litems just print value in mySql colum(name ,phone,..)
-    for (int i=0; i<list1.length; i++){
-      litems.add(list1[i]["name"]);
-      litems.add(list1[i]["phone"]);
-      setState(() {
-        // if the name in mySql == name you inter
 
-         if((list1[i]["u_name"])==name&&list1[i]["u_phone"]==phone){
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => RegistrationDone()));
-        }
-         else getData();
-         /*
-        else
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => signup()));
-
-          */
-      });
-
-    }
-    print(litems);
-
-
-  }
-
-   */
   Future getmanagerr() async{
     var url=Uri.parse("http://localhost:4000/logmanagerr");
     Response response= await get(url);

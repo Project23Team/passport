@@ -74,6 +74,7 @@ class _LostpassportState extends State<Lostpassport> {
         ' "L_profession": "$profession",'
         ' "L_dateOfbirth": "$dateOfbirth",'
         ' "L_nationaliIDNumber": "$nationaliIDNumber",'
+        ' "L_phone": "$phone",'
         ' "L_address": "$address",'
         ' "L_image": "$image"}';
     // make POST request
@@ -125,14 +126,14 @@ class _LostpassportState extends State<Lostpassport> {
       appBar: AppBar(elevation: 0,
         backgroundColor: Color(0xff003b57),
         title: GestureDetector(
-          child:Text(translation(context).homePage,style: TextStyle(color:Colors.white),),
+          child:Text(translation(context).replacementOfLost,style: TextStyle(color:Colors.white,fontSize: 13),),
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
           },
         ),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(5.0),
             child:
             DropdownButton<Language>(
               underline: const SizedBox(),

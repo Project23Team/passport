@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/home/carousel.dart';
 import 'package:myapp/pages/registrationDone/view.dart';
+import 'package:myapp/pages/replacementofvertionpassport/view.dart';
 import 'package:myapp/pages/servicesDetails/view.dart';
 import 'package:myapp/pages/signin/view.dart';
 import 'package:myapp/pages/type_passport/newpassport/view.dart';
+import 'package:myapp/pages/type_passport/replacementOfLosePassport/view.dart';
 
 import '../../classes/language.dart';
 import '../../classes/language_constants.dart';
 import '../../main.dart';
 import '../../router/route_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import '../type_passport/renewal/view.dart';
 
 final List<String> imgList = [
   ("images/pass.jpg"),
@@ -374,10 +378,21 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              sign(translation(context).newPassport, translation(context).desAdd),
+                              GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => Newpassport()));
+                                  },
+                                  child: sign(translation(context).newPassport, translation(context).desAdd)),
                               SizedBox(width: 10,),
-                              sign(translation(context).renewal, translation(
-                                  context).desAdd)
+                             GestureDetector(
+                               onTap: (){
+                                 Navigator.of(context).push(MaterialPageRoute(
+                                     builder: (context) => Renewpassport()));
+                               },
+                                child: sign(translation(context).renewal, translation(
+                                    context).desAdd),
+                              )
                             ],
                           ),
                         ),
@@ -387,11 +402,23 @@ class _HomeState extends State<Home> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              sign(translation(context).replacementOfLost,
-                                  translation(context).desAdd),
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Lostpassport()));
+                                },
+                                child: sign(translation(context).replacementOfLost,
+                                    translation(context).desAdd),
+                              ),
                               SizedBox(width: 10,),
-                              sign(translation(context).replacementVersion,
-                                  translation(context).desAdd)
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Vertionpassport()));
+                                },
+                                child: sign(translation(context).replacementVersion,
+                                    translation(context).desAdd),
+                              )
                             ],
                           ),
                         ),
@@ -782,12 +809,12 @@ class _HomeState extends State<Home> {
           Spacer(),
           Row( mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              /*
               SizedBox(
                 width: 130 , height: 40,
                 child: ElevatedButton(
                   onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Newpassport()));
+
                   },
                   child: Text(translation(context).checkIn,style: TextStyle(fontSize: 20,color: Colors.white),),
                   style: ElevatedButton.styleFrom(
@@ -803,6 +830,16 @@ class _HomeState extends State<Home> {
                       )),
                 ),
               ),
+
+               */
+              Container(
+                width: 130,height: 40,
+                decoration: BoxDecoration(
+                  color: Color(0xff38b0d2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(child: Text(translation(context).checkIn,style: TextStyle(fontSize: 20,color: Colors.white),)),
+              )
             ],
           ),
         ],

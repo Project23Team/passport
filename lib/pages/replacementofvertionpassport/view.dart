@@ -12,6 +12,7 @@ import 'package:myapp/pages/home/view.dart';
 import 'package:myapp/pages/login/view.dart';
 import 'package:myapp/pages/registrationDone/view.dart';
 
+
 import 'package:image_picker/image_picker.dart';
 
 var c_emailController=TextEditingController();
@@ -44,38 +45,38 @@ var c_imageController=TextEditingController();
 var c_image2Controller=TextEditingController();
 
 
-class Renewpassport extends StatefulWidget {
-  const Renewpassport({Key? key}) : super(key: key);
+class Vertionpassport extends StatefulWidget {
+  const Vertionpassport({Key? key}) : super(key: key);
 
   @override
-  State<Renewpassport> createState() => _RenewpassportState();
+  State<Vertionpassport> createState() => _VertionpassportState();
 }
 
-class _RenewpassportState extends State<Renewpassport> {
-
+class _VertionpassportState extends State<Vertionpassport> {
+  var litems = [];
   Future Add_data() async {
-    var url = Uri.parse("http://localhost:4000/renew");
+    var url = Uri.parse("http://localhost:4000/vertion");
     Map<String, String> headers = {"Content-type": "application/json"};
 
-    String json = '{"rn_email": "$email",'
-        ' "rn_placeOforder": "$placeOforder",'
-        ' "rn_typeOfmarrige": "$typeOfmarrige",'
-        ' "rn_sex": "$sex",'
-        ' "rn_placeOfbirth": "$placeOfbirth",'
-        ' "rn_firstname": "$firstname",'
-        ' "rn_fathersName": "$fathersName",'
-        ' "rn_grandfatherName": "$grandfatherName",'
-        ' "rn_surname": "$surname",'
-        ' "rn_motherName": "$motherName",'
-        ' "rn_motherFather": "$motherFather",'
-        ' "rn_provinceCountry": "$provinceCountry",'
-        ' "rn_maritalStatus": "$maritalStatus",'
-        ' "rn_profession": "$profession",'
-        ' "rn_dateOfbirth": "$dateOfbirth",'
-        ' "rn_nationaliIDNumber": "$nationaliIDNumber",'
-        ' "rn_phone": "$phone",'
-        ' "rn_address": "$address",'
-        ' "rn_image": "$image"}';
+    String json = '{"v_email": "$email",'
+        ' "v_placeOforder": "$placeOforder",'
+        ' "v_typeOfmarrige": "$typeOfmarrige",'
+        ' "v_sex": "$sex",'
+        ' "v_placeOfbirth": "$placeOfbirth",'
+        ' "v_firstname": "$firstname",'
+        ' "v_fathersName": "$fathersName",'
+        ' "v_grandfatherName": "$grandfatherName",'
+        ' "v_surname": "$surname",'
+        ' "v_motherName": "$motherName",'
+        ' "v_motherFather": "$motherFather",'
+        ' "v_provinceCountry": "$provinceCountry",'
+        ' "v_maritalStatus": "$maritalStatus",'
+        ' "v_profession": "$profession",'
+        ' "v_dateOfbirth": "$dateOfbirth",'
+        ' "v_nationaliIDNumber": "$nationaliIDNumber",'
+        ' "v_phone": "$phone",'
+        ' "v_address": "$address",'
+        ' "v_image": "$image"}';
     // make POST request
     Response response = await post(url, headers: headers, body: json);
     // check the status code for the result
@@ -89,6 +90,36 @@ class _RenewpassportState extends State<Renewpassport> {
     if (res == null) {}
 
   }
+  /*
+  Future getData() async{
+    var url=Uri.parse("http://localhost:4000/vertionview");
+    Response response= await get(url);
+    String body =response.body;
+//convert
+    List<dynamic> list1=json.decode(body);
+    print(list1);
+    //litems.clear();  //to not print the items in litems just print value in mySql colum(name ,phone,..)
+    for (int i=0; i<list1.length; i++){
+      litems.add(list1[i]["phone"]);
+      setState(() {
+        // if the name in mySql == name you inter
+        if(list1[i]["v_phone"]!=phone){
+          Add_data();
+        }
+
+        else
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => Home()));
+
+      });
+
+    }
+    print(litems);
+
+
+  }
+
+   */
 
   String dropdownValue ="";
   String dropdownValue2 ='';
@@ -125,14 +156,14 @@ class _RenewpassportState extends State<Renewpassport> {
       appBar: AppBar(elevation: 0,
         backgroundColor: Color(0xff003b57),
         title: GestureDetector(
-          child:Text(translation(context).homePage,style: TextStyle(color:Colors.white),),
+          child:Text(translation(context).replacementVersion,style: TextStyle(color:Colors.white,fontSize: 13),),
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
           },
         ),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(5.0),
             child:
             DropdownButton<Language>(
               underline: const SizedBox(),
@@ -919,6 +950,7 @@ class _RenewpassportState extends State<Renewpassport> {
                                             //place=placeOforder;
                                             Add_data();
                                           });
+                                          //getData();
                                         },
                                         child: Text(translation(context).next,style: TextStyle(fontSize: 25,color:  Color(0xff47B5FF),),),
                                         style: ElevatedButton.styleFrom(
@@ -947,7 +979,7 @@ class _RenewpassportState extends State<Renewpassport> {
                         right: 0,
                         child: Center(
                           child: Container(
-                            width: 150, height: 150,
+                            width: 100, height: 100,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(75),
                                 image: DecorationImage(
