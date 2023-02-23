@@ -893,7 +893,7 @@ class _LostpassportState extends State<Lostpassport> {
                                       ElevatedButton(
                                         onPressed: (){
                                           Navigator.of(context).push(MaterialPageRoute(
-                                              builder: (context) => RegistrationDone()));
+                                              builder: (context) => RegistrationDone(email: email, placeOforder: placeOforder, typeOfmarrige: typeOfmarrige, sex: sex, firstname: firstname, fathersName: fathersName, grandfatherName: grandfatherName, surname: surname, motherName: motherName, motherFather: motherFather, provinceCountry: provinceCountry, maritalStatus: maritalStatus, profession: profession, dateOfbirth: dateOfbirth, nationaliIDNumber: nationaliIDNumber, address: address)));
                                           setState(() {
                                             email = c_emailController.text;
                                             firstname=c_firstnameController.text;

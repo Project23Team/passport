@@ -50,7 +50,7 @@ class _ManagerrState extends State<Managerr> {
     child: ListView.builder(
     scrollDirection: Axis.vertical,
     shrinkWrap: true,
-        itemCount:2,
+        itemCount: litems.isEmpty ? 0 : litems.length,
         itemBuilder: (BuildContext context, int index){
     return Column(
        children: [

@@ -39,11 +39,12 @@ var c_professionController=TextEditingController();
 var c_dateOfbirthController=TextEditingController();
 
 var c_nationaliIDNumberController=TextEditingController();
-var c_phoneController=TextEditingController();
+TextEditingController c_phoneController=TextEditingController();
 var c_addressController=TextEditingController();
 var c_imageController=TextEditingController();
 var c_image2Controller=TextEditingController();
 
+TextEditingController controller = TextEditingController();
 
 class Newpassport extends StatefulWidget {
   const Newpassport({Key? key}) : super(key: key);
@@ -736,26 +737,7 @@ class _NewpassportState extends State<Newpassport> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            if (val != null && val.isEmpty) {
-                                              return translation(context).requiredField;
-                                            }
-                                            return null;
-                                          },
-                                          decoration: InputDecoration(
-                                            border: const OutlineInputBorder(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(15),)
-                                            ),
-                                            labelText: translation(context).email,
-                                            hintText: translation(context).emailHint,
-                                            //suffixStyle: TextStyle(fontSize: 40)
-                                          ),
-                                        ),
-                                      ),
+
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: TextFormField(
@@ -798,26 +780,7 @@ class _NewpassportState extends State<Newpassport> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            if (val != null && val.isEmpty) {
-                                              return translation(context).requiredField;
-                                            }
-                                            return null;
-                                          },
-                                          decoration: InputDecoration(
-                                            border: const OutlineInputBorder(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(15),)
-                                            ),
-                                            labelText: translation(context).placePhoto,
-                                            hintText: translation(context).placePhoto,
-                                            //suffixStyle: TextStyle(fontSize: 40)
-                                          ),
-                                        ),
-                                      ),
+
                                       Column(
                                         children: [
                                           MaterialButton(
@@ -842,9 +805,16 @@ class _NewpassportState extends State<Newpassport> {
                                         ],
                                       ),
 
-
-                                      imageFile == null ? Text("data") :
-                                      Image.file(imageFile!),
+                                        Container(
+                                          height: 100, width: 100,
+                                          child: Center(
+                                            child: imageFile == null ? Text("data") :
+                                            Image.file(imageFile!),
+                                          ),
+                                          color:Colors.grey ,
+                                        ),
+                                     // imageFile == null ? Text("data") :
+                                      //Image.file(imageFile!),
 
                                       /*
             MaterialButton(
@@ -891,9 +861,11 @@ class _NewpassportState extends State<Newpassport> {
 
                 */
                                       ElevatedButton(
-                                        onPressed: (){
+                                        onPressed: () async {
                                           Navigator.of(context).push(MaterialPageRoute(
-                                              builder: (context) => RegistrationDone()));
+                                              builder: (context) {
+                                                return RegistrationDone(email: email, placeOforder: placeOforder, typeOfmarrige: typeOfmarrige, sex: sex, firstname: firstname, fathersName: fathersName, grandfatherName: grandfatherName, surname: surname, motherName: motherName, motherFather: motherFather, provinceCountry: provinceCountry, maritalStatus: maritalStatus, profession: profession, dateOfbirth: dateOfbirth, nationaliIDNumber: nationaliIDNumber, address: address);
+                                              }));
                                           setState(() {
                                             email = c_emailController.text;
                                             firstname=c_firstnameController.text;
@@ -948,7 +920,7 @@ class _NewpassportState extends State<Newpassport> {
                         right: 0,
                         child: Center(
                           child: Container(
-                            width: 150, height: 150,
+                            width: 100, height: 80,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(75),
                                 image: DecorationImage(
