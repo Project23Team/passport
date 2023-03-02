@@ -285,7 +285,7 @@ class _SigninState extends State<Signin> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(translation(context).typeOfMarriage,
+                      Text(translation(context).typeOfPassport,
                         style: TextStyle(
                             fontSize: 15, color: Colors.black54),),
                       SizedBox(height: 5,),

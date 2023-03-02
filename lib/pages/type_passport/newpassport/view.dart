@@ -105,7 +105,7 @@ class _NewpassportState extends State<Newpassport> {
   io.File? imageFile;
   final imagepicked = ImagePicker();
   uploadImage() async {
-    var pickedimage = await  imagepicked.getImage(source: ImageSource.gallery);
+    var pickedimage = await  imagepicked.getImage(source: ImageSource.gallery,maxHeight: 100,maxWidth: 100);
     if(pickedimage!=null){
       setState((){
         imageFile=io.File(pickedimage.path);
@@ -178,8 +178,12 @@ class _NewpassportState extends State<Newpassport> {
             return Column(
               children: [
                 Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(translation(context).newPassport,style: TextStyle(color: Color(0xff47B5FF),fontSize: 17),),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(
-                      top: 80, left: 10, right: 10, bottom: 10),
+                      top: 80, left: 10, right: 10, bottom: 150),
                   child:
                   Stack(
                     clipBehavior: Clip.none,
@@ -287,7 +291,7 @@ class _NewpassportState extends State<Newpassport> {
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text(translation(context).typeOfMarriage,
+                                                Text(translation(context).typeOfPassport,
                                                   style: TextStyle(
                                                       fontSize: 15, color: Colors.black54),),
                                                 SizedBox(height: 5,),
@@ -783,36 +787,40 @@ class _NewpassportState extends State<Newpassport> {
 
                                       Column(
                                         children: [
-                                          MaterialButton(
-                                            onPressed: () {
-                                              uploadImage();
-                                            },
-                                            height: 50,
-                                            shape: const StadiumBorder(),
-                                            color: Theme
-                                                .of(context)
-                                                .primaryColor,
-                                            child: Center(
-                                              child: Text(
-                                                translation(context).placePhoto,
-                                                style: const TextStyle(
-                                                    color: Colors.white, fontSize: 20),
+                                          Padding(
+                                            padding: const EdgeInsets.all(15),
+                                            child: MaterialButton(
+                                              onPressed: () {
+                                                uploadImage();
+                                              },
+                                              height: 50,
+                                              shape: const StadiumBorder(),
+                                              color: Colors.white.withOpacity(0.7),
+                                              child: Center(
+                                                child: Text(
+                                                  translation(context).placePhoto,
+                                                  style: const TextStyle(
+                                                      color: Color(0xff47B5FF), fontSize: 20),
+                                                ),
                                               ),
-                                            ),
 
+                                            ),
                                           ),
 
                                         ],
                                       ),
 
-                                        Container(
+                                      Padding(
+                                        padding: const EdgeInsets.only(top:15),
+                                        child: Container(
                                           height: 100, width: 100,
                                           child: Center(
-                                            child: imageFile == null ? Text("data") :
+                                            child: imageFile == null ? Text("image") :
                                             Image.file(imageFile!),
                                           ),
                                           color:Colors.grey ,
                                         ),
+                                      ),
                                      // imageFile == null ? Text("data") :
                                       //Image.file(imageFile!),
 
@@ -860,52 +868,55 @@ class _NewpassportState extends State<Newpassport> {
             ),
 
                 */
-                                      ElevatedButton(
-                                        onPressed: () async {
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                              builder: (context) {
-                                                return RegistrationDone(email: email, placeOforder: placeOforder, typeOfmarrige: typeOfmarrige, sex: sex, firstname: firstname, fathersName: fathersName, grandfatherName: grandfatherName, surname: surname, motherName: motherName, motherFather: motherFather, provinceCountry: provinceCountry, maritalStatus: maritalStatus, profession: profession, dateOfbirth: dateOfbirth, nationaliIDNumber: nationaliIDNumber, address: address);
-                                              }));
-                                          setState(() {
-                                            email = c_emailController.text;
-                                            firstname=c_firstnameController.text;
-                                            fathersName=c_fathersNameController.text;
-                                            grandfatherName=c_grandfatherNameController.text;
-                                            surname=c_surnameController.text;
-                                            motherName=c_motherNameController.text;
-                                            motherFather=c_motherFatherController.text;
-                                            provinceCountry=c_provinceCountryController.text;
-                                           // maritalStatus=c_maritalStatusController.text;
-                                            profession=c_professionController.text;
-                                            dateOfbirth=c_dateOfbirthController.text;
-                                            nationaliIDNumber=c_nationaliIDNumberController.text;
-                                        //    phone=c_phoneController.text;
-                                            address=c_addressController.text;
-                                            placeOforder =dropdownValue;
-                                            typeOfmarrige=dropdownValue2;
-                                            sex=dropdownValueS;
-                                            placeOfbirth=dropdownValuepd;
-                                            provinceCountry=dropdownValuepdIraq;
-                                            maritalStatus=dropdownValuepdMaritalStatus;
+                                      Padding(
+                                        padding: const EdgeInsets.all(50),
+                                        child: ElevatedButton(
+                                          onPressed: () async {
+                                            Navigator.of(context).push(MaterialPageRoute(
+                                                builder: (context) {
+                                                  return RegistrationDone(email: email, placeOforder: placeOforder, typeOfmarrige: typeOfmarrige, sex: sex, firstname: firstname, fathersName: fathersName, grandfatherName: grandfatherName, surname: surname, motherName: motherName, motherFather: motherFather, provinceCountry: provinceCountry, maritalStatus: maritalStatus, profession: profession, dateOfbirth: dateOfbirth, nationaliIDNumber: nationaliIDNumber, address: address);
+                                                }));
+                                            setState(() {
+                                              email = c_emailController.text;
+                                              firstname=c_firstnameController.text;
+                                              fathersName=c_fathersNameController.text;
+                                              grandfatherName=c_grandfatherNameController.text;
+                                              surname=c_surnameController.text;
+                                              motherName=c_motherNameController.text;
+                                              motherFather=c_motherFatherController.text;
+                                              provinceCountry=c_provinceCountryController.text;
+                                             // maritalStatus=c_maritalStatusController.text;
+                                              profession=c_professionController.text;
+                                              dateOfbirth=c_dateOfbirthController.text;
+                                              nationaliIDNumber=c_nationaliIDNumberController.text;
+                                          //    phone=c_phoneController.text;
+                                              address=c_addressController.text;
+                                              placeOforder =dropdownValue;
+                                              typeOfmarrige=dropdownValue2;
+                                              sex=dropdownValueS;
+                                              placeOfbirth=dropdownValuepd;
+                                              provinceCountry=dropdownValuepdIraq;
+                                              maritalStatus=dropdownValuepdMaritalStatus;
 
 
-                                            //place=placeOforder;
-                                            Add_data();
-                                          });
-                                        },
-                                        child: Text(translation(context).next,style: TextStyle(fontSize: 25,color:  Color(0xff47B5FF),),),
-                                        style: ElevatedButton.styleFrom(
-                                            elevation: 5,
-                                            primary: Color(0xffffffff),
-                                            // padding: EdgeInsets.symmetric(horizontal:200, vertical: 20),
-                                            side: BorderSide(
-                                              width: 0,
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(20,)
-                                            )),
+                                              //place=placeOforder;
+                                              Add_data();
+                                            });
+                                          },
+                                          child: Text(translation(context).next,style: TextStyle(fontSize: 25,color:  Color(0xff47B5FF),),),
+                                          style: ElevatedButton.styleFrom(
+                                              elevation: 5,
+                                              primary: Color(0xffffffff),
+                                              // padding: EdgeInsets.symmetric(horizontal:200, vertical: 20),
+                                              side: BorderSide(
+                                                width: 0,
+                                              ),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(20,)
+                                              )),
 
+                                        ),
                                       ),
 
                                     ],
