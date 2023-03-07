@@ -120,7 +120,6 @@ class _NewpassportState extends State<Newpassport> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -874,7 +873,7 @@ class _NewpassportState extends State<Newpassport> {
                                           onPressed: () async {
                                             Navigator.of(context).push(MaterialPageRoute(
                                                 builder: (context) {
-                                                  return RegistrationDone(email: email, placeOforder: placeOforder, typeOfmarrige: typeOfmarrige, sex: sex, firstname: firstname, fathersName: fathersName, grandfatherName: grandfatherName, surname: surname, motherName: motherName, motherFather: motherFather, provinceCountry: provinceCountry, maritalStatus: maritalStatus, profession: profession, dateOfbirth: dateOfbirth, nationaliIDNumber: nationaliIDNumber, address: address);
+                                                  return RegistrationDone(email: email[i], placeOforder: placeOforder[i], typeOfmarrige: typeOfmarrige[i], sex: sex[i], firstname: firstname[i], fathersName: fathersName[i], grandfatherName: grandfatherName[i], surname: surname[i], motherName: motherName[i], motherFather: motherFather[i], provinceCountry: provinceCountry[i], maritalStatus: maritalStatus[i], profession: profession[i], dateOfbirth: dateOfbirth[i], nationaliIDNumber: nationaliIDNumber[i], address: address[i]);
                                                 }));
                                             setState(() {
                                               email = c_emailController.text;

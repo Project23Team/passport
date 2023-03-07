@@ -29,9 +29,9 @@ class _ManagerrState extends State<Managerr> {
 
     setState(() {
       for (int i=0; i<list1.length; i++){
-      name.add(list1[i]["u_name"]);
-      phone.add(list1[i]["u_phone"]);
-    }
+        name.add(list1[i]["u_name"]);
+        phone.add(list1[i]["u_phone"]);
+      }
     });
     //print(imitems);//to print in my app
     print(list1);//to print my databace in run
@@ -45,16 +45,16 @@ class _ManagerrState extends State<Managerr> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).size.height,
-    child: ListView.builder(
-    scrollDirection: Axis.vertical,
-    shrinkWrap: true,
-        itemCount: litems.isEmpty ? 0 : litems.length,
-        itemBuilder: (BuildContext context, int index){
-    return Column(
-       children: [
-         /*
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount:2,
+              itemBuilder: (BuildContext context, int index){
+                return Column(
+                  children: [
+                    /*
           Container(
       height: 100, width:MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -76,14 +76,14 @@ class _ManagerrState extends State<Managerr> {
           )
 
           */
-         Padding(
-           padding: const EdgeInsets.all(10),
-           child: page(name[index],phone[index]),
-         ),
-       ],
-    );
-    }
-    )
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: page(name[index],phone[index]),
+                    ),
+                  ],
+                );
+              }
+          )
 
       ),
     );
@@ -96,41 +96,41 @@ class _ManagerrState extends State<Managerr> {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 85,
+            backgroundColor: Colors.cyan,
+          ),
+          Column(
             children: [
-              CircleAvatar(
-                radius: 85,
-                backgroundColor: Colors.cyan,
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Text("User name : "),
+                    Text(name),
+
+                  ],
+                ),
               ),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        Text("User name : "),
-                        Text(name),
-
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("User Phone : "),
-                      Text(phone),
+                  Text("User Phone : "),
+                  Text(phone),
 
 
-                    ],
-                  ),
                 ],
               ),
-
-
             ],
           ),
+
+
+        ],
+      ),
 
 
     );

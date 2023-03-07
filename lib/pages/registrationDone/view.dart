@@ -59,6 +59,7 @@ class _RegistrationDoneState extends State<RegistrationDone> {
 
   late final TextEditingController c_phoneController;
   var litems = [];
+  var email1=[];
   var name=[];
   var phone=[];
   Future getData() async{
@@ -74,8 +75,9 @@ class _RegistrationDoneState extends State<RegistrationDone> {
 
     setState(() {
       for (int i=0; i<list1.length; i++){
-        name.add(list1[i]["u_name"]);
-        phone.add(list1[i]["u_phone"]);
+        //name.add(list1[i]["n_email"]);
+        phone.add(list1[i]["n_placeOforder"]);
+        email1.add(list1[i]["n_email"]);
       }
     });
     //print(imitems);//to print in my app
@@ -86,6 +88,7 @@ class _RegistrationDoneState extends State<RegistrationDone> {
     super.initState();
     getData();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,7 +189,8 @@ class _RegistrationDoneState extends State<RegistrationDone> {
                         ),
                         Center(
                           child: QrImage(
-                            //data:"name :"+name[index]+"    "+ "phone number:"+phone[index],
+                           // data:"name :"+name[index]+"    ",
+
                             data:"email is""  "+ email + "   "+"placeOforder"+placeOforder+"    "+
                                " typeOfmarrige:   "+typeOfmarrige+"         "+"sex:  "+sex +"   "+
                            "placeOfbirth:   "+ placeOfbirth+"        " +"firstname:  "+ placeOfbirth+"        "
@@ -196,6 +200,10 @@ class _RegistrationDoneState extends State<RegistrationDone> {
                             + "maritalStatus:    "+ maritalStatus+"        " +"profession:    "+ profession+"        "
                                 +"dateOfbirth:      "+ dateOfbirth+"        "+"nationaliIDNumber:   "+ nationaliIDNumber+"        "
                             + "address:    "+ address+"        " ,
+
+
+
+
                             size: 280,
                             // You can include embeddedImageStyle Property if you
                             //wanna embed an image from your Asset folder
